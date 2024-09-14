@@ -1,0 +1,42 @@
+﻿@using MotoGP_Web_Site.Database.EntityLayer.Concrete
+@model List<News>
+
+
+<section class="info-w3ls">
+	<div class="container">
+		<div class="row">
+			@for(int i=0;i<3;i++)
+			{
+				<div style="margin-top: 40px;" class="col-lg-4">
+					<a href="/News/NewsDetail/@Model[i].Id">
+						<img src="@Model[i].ImageUrl" class="img-responsive img-hover" alt="Haber 1">
+					</a>
+					<br /><br />
+					<a href="/News/NewsDetail/@Model[i].Id">
+						<h4 style="text-align: center; font-size: 22px; ">@Model[i].Title</h4>
+					</a>
+					<br />
+					<p style="text-align: center;">@Model[i].Text.Substring(0, Model[i].Text.Substring(0, 130).LastIndexOf(" ")) ...</p>
+				</div>
+			}
+		</div>
+		<br />
+		<br />
+		<div class="row">
+			@for (int i = 3; i < 6; i++)
+			{
+				<div style="margin-top: 40px;" class="col-lg-4">
+					<a href="/News/NewsDetail/@Model[i].Id">
+						<img src="@Model[i].ImageUrl" class="img-responsive img-hover" alt="Haber 1">
+					</a>
+					<br /><br />
+					<a href="/News/NewsDetail/@Model[i].Id">
+						<h4 style="text-align: center; font-size: 22px; ">@Model[i].Title</h4>
+					</a>
+					<br/>
+					<p style="text-align: center;">@Model[i].Text.Substring(0, Model[i].Text.Substring(0, 130).LastIndexOf(" ")) ...</p>
+				</div>
+			}
+		</div>
+	</div>
+</section>

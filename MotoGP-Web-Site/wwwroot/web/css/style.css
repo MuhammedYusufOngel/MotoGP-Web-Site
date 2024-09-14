@@ -23,9 +23,10 @@ input[type="button"],input[type="submit"]{
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
 }
-h1,h2,h3,h4,h5,h6{
-	margin:0;	
-	padding:0;
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+	color: black;
 }	
 p{
 	margin:0;
@@ -352,15 +353,15 @@ section.info-w3ls .info-agile1:hover .info-agileits a, section.info-w3ls .info-a
 /*-- /info --*/
 /*-- testimonial section --*/
 section.testimonial-w3ls {
-	padding:100px 0;
-	background:url(../images/test.jpg) no-repeat;
-	background-position:center;
-	background-attachment:fixed;
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	-ms-background-size:cover;
+	padding: 100px 0;
+	background: url(https://photos.worldsbk.com/2023/12/04/toprak-action_ap29954-2_full.jpg) no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	-ms-background-size: cover;
 }
 .jarallax {
     position: relative;
@@ -1594,7 +1595,7 @@ section.schedule-w3layouts .table {
     width: 100%;
     max-width: 100%;
     margin-bottom: 20px;
-    border: 1px solid #1ca0de;
+    border: 1px solid rgba(0,0,0,0.3);
 }
 section.schedule-w3layouts .table>tbody>tr>td, section.schedule-w3layouts .table>tbody>tr>th, section.schedule-w3layouts .table>tfoot>tr>td, section.schedule-w3layouts .table>tfoot>tr>th, section.schedule-w3layouts .table>thead>tr>td, section.schedule-w3layouts .table>thead>tr>th {
     padding: 8px;
@@ -1603,15 +1604,15 @@ section.schedule-w3layouts .table>tbody>tr>td, section.schedule-w3layouts .table
     vertical-align: middle;
     border-top: 1px solid #1ca0de;
 }
-section.schedule-w3layouts .table>thead>tr>th {
-    vertical-align:bottom;
-    border-bottom: 2px solid #1ca0de;
+section.schedule-w3layouts .table > thead > tr > th {
+	vertical-align: bottom;
+	border-bottom: 2px solid rgba(0,0,0,0.3);
 }
-section.schedule-w3layouts .table>thead>tr>th h4 {
-	font-size:20px;
-	font-weight:normal;
-	color:#1ca0de;
-	text-transform:uppercase;
+section.schedule-w3layouts .table > thead > tr > th h4 {
+	font-size: 20px;
+	font-weight: normal;
+	color: rgba(0,0,0,0.3);
+	text-transform: uppercase;
 	font-family: 'Michroma', sans-serif;
 }
 section.schedule-w3layouts .table>tbody>tr>td img.img-responsive {
@@ -1628,8 +1629,8 @@ section.schedule-w3layouts .table>tbody>tr>td a {
 	text-decoration:none;
 	color:#999;
 }
-section.schedule-w3layouts .table>tbody>tr>td a:hover {
-	color:#1ca0de;
+section.schedule-w3layouts .table > tbody > tr > td a:hover {
+	color: rgba(0,0,0,0.3);
 }
 .map iframe {
     width: 100%;
@@ -3469,6 +3470,11 @@ section.schedule-w3layouts .table>tbody>tr>td, section.schedule-w3layouts .table
 section.schedule-w3layouts .table>tbody>tr>td p.event-agileits {
 	font-size:13px;
 }
+
+section.schedule-w3layouts .table > tbody > tr > td, section.schedule-w3layouts .table > tbody > tr > th, section.schedule-w3layouts .table > tfoot > tr > td, section.schedule-w3layouts .table > tfoot > tr > th, section.schedule-w3layouts .table > thead > tr > td, section.schedule-w3layouts .table > thead > tr > th {
+	font-size: 13px;
+	color: black;
+}
 .colorful-tab-menu-item a {
     padding: 0px 0;
 }
@@ -3481,9 +3487,7 @@ section.schedule-w3layouts .table>tbody>tr>td p.event-agileits {
     padding-left: 2px;
     font-size: 12px;
 }
-section.results-w3ls .table>tbody>tr>td, section.results-w3ls .table>tbody>tr>th, section.results-w3ls .table>tfoot>tr>td, section.results-w3ls .table>tfoot>tr>th, section.results-w3ls .table>thead>tr>td, section.results-w3ls .table>thead>tr>th {
-    font-size: 13px;
-}
+
 p.driver-agileits {
     font-size: 13px;
 }
@@ -3534,4 +3538,9 @@ input#name, input#phone, input#email, textarea#message {
 section.contact-w3ls label {
     font-size: 13px;
 }
+
+}
+
+section.testimonial-w3ls .table {
+	color: white;
 }

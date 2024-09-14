@@ -1,0 +1,54 @@
+﻿@using MotoGP_Web_Site.Database.EntityLayer.Concrete
+@model List<DriverChampionship>
+
+@{
+	int i = Model[0].Points;
+}
+<section class="testimonial-w3ls jarallax">
+	<h3 style="color: wheat; " class="text-center">Puan Durumu</h3>
+
+	<div class="container">
+		<!-- Slideshow 1 -->
+		<table class="table table-responsive">
+			<thead>
+				<tr>
+				</tr>
+			</thead>
+
+			<tbody>
+				
+				@foreach(var item in Model)
+				{
+					<tr>
+						<td>@item.Driver.DriverNumber</td>
+						<td>
+							<div class="row">
+								<div class="col-lg-6 col-12">
+									@item.Driver.Name.Substring(0,1) . @item.Driver.Surname
+								</div>
+							
+								<div class="col-lg-6 col-12">
+									@item.Team.TeamName
+								</div>
+							
+							</div>
+						</td>
+						<td>@item.Points</td>
+						@if(i != item.Points)
+						{
+							<td>-@(i - item.Points)</td>
+						}
+						else
+						{
+							<td></td>
+						}
+					</tr>
+				}
+			</tbody>
+
+		</table>
+
+		<a href="#" class="text-center">Devamını Gör</a>
+	</div>
+
+</section>

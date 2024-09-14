@@ -7,5 +7,5 @@ namespace MotoGP_Web_Site.Database.EntityLayer.Concrete
 		[Key]
 		public int ManuId { get; set; }
 		public string ManuName { get; set; }
-	}
+    }
 }

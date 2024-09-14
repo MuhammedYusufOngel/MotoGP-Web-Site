@@ -1,0 +1,53 @@
+﻿@using MotoGP_Web_Site.Database.EntityLayer.Concrete
+@model List<Track>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<section style="margin-top: 40px;" class="schedule-w3layouts">
+	<div class="container">
+		<h3 class="text-center" data-aos="zoom-in">MotoGP Takvimi</h3>
+		<div class="table-responsive" data-aos="flip-down">
+			<table class="table table-responsive">
+				<thead>
+					<tr>
+						<th><h4>#</h4></th>
+						<th><h4>#</h4></th>
+						<th><h4>#</h4></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach(var item in Model)
+					{
+						<tr>
+							<td><img src="@item.National.NationalImage" width="100" class="img-responsive" /></td>
+							<td><img src="@item.TrackImage" width="250" class="img-responsive img-hover" /></td>
+							<td><a data-toggle="modal" href="#map1" class="map-link" title="Click"><i class="fa fa-map-marker" aria-hidden="true"></i> @item.TrackName</a></td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="modal fade" id="map1" tabindex="-1" role="dialog" aria-labelledby="map1" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Phillip Island Grand Prix Circuit</h4>
+				</div>
+				<div class="modal-body">
+					<div class="map">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12489.004048382385!2d145.2300863!3d-38.5049214!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf0579a514431390!2sPhillip+Island+Grand+Prix+Circuit!5e0!3m2!1sen!2sin!4v1490703725291" style="border:0" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+</section>
+

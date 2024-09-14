@@ -9,5 +9,6 @@ namespace MotoGP_Web_Site.Database.EntityLayer.Concrete
 		public int ManuId { get; set; }
 		public Manufacturer Manufacturer { get; set; }
 		public int Points { get; set; }
-	}
+        public string? Year { get; set; }
+    }
 }

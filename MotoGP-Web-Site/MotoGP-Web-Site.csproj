@@ -24,8 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Database\BusinessLayer\Abstract\" />
-    <Folder Include="Database\BusinessLayer\Concrete\" />
     <Folder Include="Database\BusinessLayer\ValidationRules\" />
   </ItemGroup>
 

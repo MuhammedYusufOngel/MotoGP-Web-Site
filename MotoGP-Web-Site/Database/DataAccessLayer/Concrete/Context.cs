@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MotoGP_Web_Site.Database.EntityLayer.Concrete;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MotoGP_Web_Site.Database.DataAccessLayer.Concrete
 {
@@ -21,5 +22,9 @@ namespace MotoGP_Web_Site.Database.DataAccessLayer.Concrete
         public DbSet<DriverChampionship> DriverChamps { get; set; }
         public DbSet<TeamChampionship> TeamChamps { get; set; }
         public DbSet<ManuChampionship> ManuChamps { get; set; }
+        public DbSet<Track> Tracks { get; set; }
+        public DbSet<News> News { get; set; }
+        public DbSet<SessionTrack> SessionTracks { get; set; }
+        public DbSet<Result> Results { get; set; }
     }
 }

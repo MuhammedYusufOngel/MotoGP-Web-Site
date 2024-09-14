@@ -1,0 +1,53 @@
+﻿@using MotoGP_Web_Site.Database.EntityLayer.Concrete
+@model List<TeamChampionship>
+
+@{
+	int most = Model[0].Points;
+	ViewData["Title"] = "Teams";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<br />
+<br />
+<br />
+
+<section class="results-w3ls">
+	<div class="container">
+		<h3 style="color: black;" class="text-center" data-aos="zoom-in">Markalar Klasmanı</h3>
+		<table class="table table-responsive">
+			<thead>
+				<tr>
+					<th><h4 style="color: black;">#</h4></th>
+					<th><h4 style="color: black;">#</h4></th>
+					<th><h4 style="color: black;">#</h4></th>
+					<th><h4 style="color: black;">#</h4></th>
+					<th><h4 style="color: black;">#</h4></th>
+				</tr>
+			</thead>
+			<tbody style="color: black;">
+				@for(int i = 0; i < Model.Count; i++)
+				{
+					<tr style="background: linear-gradient(to left, black, @(Model[i].Team.TeamColor));">
+					<td style="color: white;">@(i + 1)</td>
+					<td><img src="@Model[i].Team.TeamImage" width="60" height="60" class="img-responsive"/></td>
+					<td>
+						<div class="row">
+							<div class="col-lg-6 col-12"><h4 style="color: white;">@Model[i].Team.TeamName</h4></div>
+							<div class="col-lg-6 col-12"><h4 style="color: gray;">@Model[i].Team.Manufacturer.ManuName</h4></div>
+						</div>
+					</td>
+					<td style="color: white;">@Model[i].Points</td>
+					@if(most == Model[i].Points)
+					{
+						<td></td>
+					}
+					else
+					{
+						<td style="color: white;">-@(most - Model[i].Points)</td>
+					}
+				</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</section>

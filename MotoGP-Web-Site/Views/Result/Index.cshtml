@@ -1,0 +1,200 @@
+﻿@using MotoGP_Web_Site.Database.EntityLayer.Concrete
+@model List<Result>
+
+@{
+	TimeSpan fastestLap = Model[0].Time;
+	ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<br />
+<br />
+<br />
+
+<section class="results-w3ls">
+	<div class="container">
+		<h3 style="color: black;" class="text-center" data-aos="zoom-in">Sonuçlar</h3>
+		<br />
+		<div class="row">
+			<div class="col-lg-4 col-12">
+
+				<select id="yearSelect" class="form-control">
+					@foreach (var item in ViewBag.y)
+					{
+						<option value="@item.Value">@item.Text</option>
+					}
+				</select>
+			</div>
+			<div class="col-lg-4 col-12">
+
+				<select id="trackSelect" class="form-control">
+					<option id="#" selected>Pisti seçin</option>
+					@foreach (var item in ViewBag.t)
+					{
+						<option value="@item.Value">@item.Text</option>
+					}
+				</select>
+				
+			</div>
+			<div class="col-lg-4 col-12">
+
+				<select id="sessionSelect" class="form-control">
+					<option value="#">Seansı Seçin</option>
+					@foreach (var item in ViewBag.s)
+					{
+						<option value="@item.Value">@item.Text</option>
+					}
+				</select>
+			</div>
+		</div>
+		<br />
+		<br />
+
+		<table class="table table-responsive">
+			<thead>
+				<tr>
+				</tr>
+			</thead>
+			<tbody id="resultsList" style="color: black;">
+
+			</tbody>
+		</table>
+
+		<!--
+		<table class="table table-responsive">
+			<thead>
+				<tr>
+				</tr>
+			</thead>
+			<tbody style="color: black;">
+				@for(int i = 0; i < Model.Count; i++)
+				{
+					<tr style="background: linear-gradient(90deg, @(Model[i].DriverChamp.Team.TeamColor) 0%, rgb(255,255,255,1) 100%);">
+						<td>@(i + 1)</td>
+						@if(Model[i].Points != null)
+						{
+							<td>@Model[i].Points</td>
+						}
+						<td><img src="@Model[i].DriverChamp.Driver.National.NationalImage" width="55" alt="germany" class="img-responsive"></td>
+						<td>@Model[i].DriverChamp.Driver.DriverNumber</td>
+						<td>
+							<div class="row">
+								<div class="col-lg-6 col-12">
+									<h4>@Model[i].DriverChamp.Driver.Name.Substring(0, 1) . @Model[i].DriverChamp.Driver.Surname</h4>
+								</div>
+								<div class="col-lg-6 col-12">
+									<h4>@Model[i].DriverChamp.Team.TeamName</h4>
+								</div>
+							</div>
+						</td>
+						@if(fastestLap == Model[i].Time)
+						{
+							<td>@Model[i].Time.ToString("mm\\:ss\\.fff")</td>
+						}
+						else
+						{
+							<td>+@((fastestLap - Model[i].Time).ToString("ss\\.fff"))</td>
+						}
+				</tr>
+				}
+			</tbody>
+		</table>
+
+		-->
+	</div>
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+
+	$(document).ready(function () {
+
+		function GetResultWithAjax() {
+
+			let selectedTrack = $("#trackSelect").val();
+			let selectedSession = $("#sessionSelect").val();
+			let selectedYear = $("#yearSelect").val();
+
+
+			$.ajax({
+				url: '@Url.Action("GetResults", "Result")',
+				type: 'GET',
+				data: { trackId: selectedTrack, sessionId: selectedSession, year: selectedYear  },
+				success: function (data) {
+
+					let fastestMinutes = 0;
+					let fastestSeconds = 0;
+
+					$("#resultsList").empty(); // Önce listeyi temizle
+					$.each(data, function (i, result) {
+						let timeString = result.time;
+						timeString = timeString.slice(0, -4)
+
+						console.log(result)
+
+						let parts = timeString.split(":");
+
+						if (i == 0) {
+							fastestMinutes = parts[1];
+							fastestSeconds = parts[2];
+						}
+
+						let driverMinutes = parts[1];
+						let driverSeconds = parts[2];
+
+						let minutesInt = driverMinutes - fastestMinutes;
+						let secondsInt = driverSeconds - fastestSeconds;
+
+						let minutes = minutesInt.toString().substring(0, 5)
+						let seconds = secondsInt.toString().substring(0, 5)
+						let q2word = "";
+						let points = "";
+
+						
+						if(result.sessionTrack.session.sessionId == 2)
+						{
+							if (i < 10)
+							{
+								q2word = "<td>Q2</td>"
+							}
+						}
+						if(result.sessionTrack.session.sessionId == 4)
+						{
+							if (i < 2)
+							{
+								q2word = "<td>Q2</td>"
+							}
+						}
+
+						if(result.points != null)
+						{
+							points = "<td>" + result.points +"</td>"
+						}
+
+						seconds = "+" + seconds;
+
+						if (seconds == "+0") {
+							seconds = fastestMinutes + ":" + fastestSeconds;
+						}
+
+						$("#resultsList").append("<tr style='background: linear-gradient(90deg, " + result.driverChamp.team.teamColor + " 0%, rgb(255,255,255,1) 100%);'> <td>" + (i + 1) + "</td>" + q2word + points +" <td> <img src='" + result.driverChamp.driver.national.nationalImage + "' width='55' class='img-responsive' /> </td> <td>" + result.driverChamp.driver.driverNumber + "</td> <td><div class='row'><div class='col-lg-6 col-12'>" + result.driverChamp.driver.name.substring(0, 1) + ". " + result.driverChamp.driver.surname + "</div> <div class='col-lg-6 col-12'>" + result.driverChamp.team.teamName + "</div></div></td > <td> " + seconds + "</td > </tr>");
+					});
+				},
+				error: function (xhr, status, error) {
+					console.log("Error: " + error);
+				}
+			});
+		}
+
+		$("#trackSelect").change(function () {
+			GetResultWithAjax();
+		});
+
+		$("#sessionSelect").change(function () {
+			GetResultWithAjax();
+		});
+
+	});
+</script>

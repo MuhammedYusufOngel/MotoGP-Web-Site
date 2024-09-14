@@ -26,6 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href='~/web/css/aos.css' rel='stylesheet prefetch' type="text/css" media="all" />
     <link href="~/web/css/style.css" rel="stylesheet" type="text/css" media="all" />
 
+
     <!-- /css -->
 </head>
 <body>
@@ -39,23 +40,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><h1>Bike Race</h1></a>
+                <a class="navbar-brand" href="/Default/Index"><h1>MotoGP</h1></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav slide-nav">
-                    <li><a href="/Default/Index">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="schedule.html">Schedule</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="drivers.html">Drivers Championship</a></li>
+                    <li><a href="/Default/Index">Ana Sayfa</a></li>
+                    <li><a href="/About/Index">Hakkımızda</a></li>
+                    <li><a href="/Schedule/Index">Takvim</a></li>
+                    <li><a href="gallery.html">Galeri</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Short Codes <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sıralamalar<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="typo.html">Typography</a></li>
-                            <li><a href="icons.html">Icons</a></li>
+                            <li><a href="/Championship/Drivers">Sürücüler Şampiyonası</a></li>
+                            <li><a href="/Championship/Teams">Markalar Şampiyonası</a></li>
+                            <li><a href="/Championship/Manufacturers">Üreticiler Şampiyonası</a></li>
                         </ul>
                     </li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="/Result/Index">Sonuçlar</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
             <div class="search1">
@@ -72,18 +73,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </nav>
 
     @RenderBody()
-   
+
+    <!--
     <section class="last-w3layouts">
         <div class="container">
             <a href="index.html" class="bottom-agile"><h2 class="text-center">Bike Race</h2></a>
             <p class="text-center">&copy; 2017 Bike Race. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank"> W3layouts </a></p>
         </div>
     </section>
+    -->
     <!-- last section -->
     <!-- back to top -->
     <a href="#0" class="cd-top">Top</a>
     <!-- /back to top -->
     <!-- js files -->
+    <script src="~/js/site.js"></script>
     <script src="~/web/js/jquery.min.js"></script>
     <script src="~/web/js/bootstrap.min.js"></script>
     <script src="~/web/js/SmoothScroll.min.js"></script>
@@ -93,5 +97,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src='~/web/js/aos.js'></script>
     <script src="~/web/js/aos2.js"></script>
     <!-- /js files -->
+    
+    <script type="text/javascript" src="~/web/js/colorfulTab.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#colorful").colorfulTab();      
+        });
+    </script>
 </body>
 </html>	
