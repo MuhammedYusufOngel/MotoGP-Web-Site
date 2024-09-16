@@ -1,0 +1,52 @@
+﻿@using MotoGP_Web_Site.Database.EntityLayer.Concrete
+@model List<Result>
+
+@{
+    int i = 1;
+    ViewData["Title"] = "Sonuçları Görüntüle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Pozisyon</th>
+                                    <th>Id</th>
+                                    <th>Sürücü</th>
+                                    <th>Zaman</th>
+                                    <th>Puan</th>
+                                    <th>Sil</th>
+                                    <th>Düzenle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@(i++)</td>
+                                        <td>@item.Id</td>
+                                        <td>@item.DriverChamp.Driver.Name @item.DriverChamp.Driver.Surname</td>
+                                        <td>@item.Time</td>
+                                        <td>@item.Points</td>
+                                        <td><a href="/Result/DeleteResult?id=@item.Id" class="btn btn-danger">Sil</a></td>
+                                        <td><a href="/Result/UpdateResult?id=@item.Id" class="btn btn-warning">Düzenle</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                   
+                    <br />
+                    <br />
+                    <a href="/Result/AddResult?trackid=@ViewBag.trackid&sessionid=@ViewBag.sessionid" class="btn btn-primary">Yeni Sürücü Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

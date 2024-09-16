@@ -1,0 +1,42 @@
+﻿@using MotoGP_Web_Site.Database.EntityLayer.Concrete
+@model List<Session>
+
+@{
+    ViewData["Title"] = "Pistleri Göster";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="row">
+        @foreach(var item in Model)
+        {
+        <a href="/Result/ShowResult?trackid=@ViewBag.trackid&sessionid=@item.SessionId" class="btn btn-dark">
+            <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-flex align-items-center align-self-start">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-12">
+                                                <h1 style="margin-top: 20px;">@item.SessionId</h1>
+                                            </div>
+                                            <div class="col-lg-4 col-12">
+                                                <h2 style="margin-top: 20px;">@item.SessionName</h2>
+                                            </div>
+                                            <div style="margin: auto;" class="col-lg-4 col-12">
+                                                <h2 style="margin-top: 20px;">@item.SessionLength</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        }
+    </div>
+</div>

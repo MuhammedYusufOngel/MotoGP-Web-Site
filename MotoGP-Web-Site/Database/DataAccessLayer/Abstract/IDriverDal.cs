@@ -4,5 +4,6 @@ namespace MotoGP_Web_Site.Database.DataAccessLayer.Abstract
 {
 	public interface IDriverDal : IGenericDal<Driver>
     {
+		List<Driver> GetDriversWithNational();
 	}
 }

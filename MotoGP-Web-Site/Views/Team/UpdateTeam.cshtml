@@ -1,0 +1,38 @@
+﻿@model MotoGP_Web_Site.Database.EntityLayer.Concrete.Team
+
+@{
+    ViewData["Title"] = "Takım Güncelleme";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+
+                        <label asp-for="TeamId">Id</label>
+                        <input type="text" class="form-control" asp-for="TeamId" readonly/><br><br>
+
+                        <label asp-for="ManufacturerManuId">Üretici</label>
+                        @Html.DropDownListFor(x => x.ManufacturerManuId, (List<SelectListItem>)ViewBag.m, new {@class="form-control"})<br><br>
+
+                        <label asp-for="TeamName">Takımın Adı</label>
+                        <input type="text" class="form-control" asp-for="TeamName" /><br><br>
+
+                        <label asp-for="TeamImage">Takımın Logosu</label>
+                        <input type="text" class="form-control" asp-for="TeamImage" /><br><br>
+
+                        <label asp-for="TeamColor">Takımın Rengi</label>
+                        <input type="text" class="form-control" asp-for="TeamColor" /><br><br>
+
+                        <button type="submit" class="btn btn-success">Takım Güncelle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,33 +1,41 @@
 ﻿using MotoGP_Web_Site.Database.BusinessLayer.Abstract;
+using MotoGP_Web_Site.Database.DataAccessLayer.Abstract;
 using MotoGP_Web_Site.Database.EntityLayer.Concrete;
 
 namespace MotoGP_Web_Site.Database.BusinessLayer.Concrete
 {
     public class NationalManager : INationalService
     {
+        private INationalDal nationalDal;
+
+        public NationalManager(INationalDal nationalDal)
+        {
+            this.nationalDal = nationalDal;
+        }
+
         public List<National> GetAll()
         {
-            throw new NotImplementedException();
+            return nationalDal.GetAll();
         }
 
         public National GetById(int id)
         {
-            throw new NotImplementedException();
+            return nationalDal.getById(id);
         }
 
         public void TAdd(National entity)
         {
-            throw new NotImplementedException();
+            nationalDal.Add(entity);
         }
 
         public void TRemove(National entity)
         {
-            throw new NotImplementedException();
+            nationalDal.Delete(entity);
         }
 
         public void TUpdate(National entity)
         {
-            throw new NotImplementedException();
+            nationalDal.Update(entity);
         }
     }
 }

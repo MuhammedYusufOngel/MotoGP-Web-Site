@@ -6,5 +6,6 @@ namespace MotoGP_Web_Site.Database.BusinessLayer.Abstract
     {
         public List<DriverChampionship> GetDriversWithName();
         public List<DriverChampionship> GetThreeDriversForHome();
+        public DriverChampionship GetByIdWithDriver(int id);
     }
 }

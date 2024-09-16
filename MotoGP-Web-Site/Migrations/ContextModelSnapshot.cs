@@ -248,7 +248,6 @@ namespace MotoGP_Web_Site.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("RiderStory")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
@@ -310,6 +309,9 @@ namespace MotoGP_Web_Site.Migrations
 
                     b.Property<string>("Year")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("isAdd")
+                        .HasColumnType("bit");
 
                     b.HasKey("ManuChampId");
 
@@ -402,6 +404,10 @@ namespace MotoGP_Web_Site.Migrations
 
                     b.Property<int>("DriverChampId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Gap")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Points")
                         .HasColumnType("int");

@@ -1,0 +1,42 @@
+﻿
+@using MotoGP_Web_Site.Database.EntityLayer.Concrete
+@model List<Track>
+@{
+    ViewData["Title"] = "Seansları Göster";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <a href="/Result/ShowSessions?trackid=@item.TrackId" class="btn btn-inverse-danger btn-fw">
+                <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex align-items-center align-self-start">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-12">
+                                                    <h1 style="margin-top: 20px;">@item.TrackId</h1>
+                                                    <img src="@item.National.NationalImage" style="margin-top: 40px;" width="250" class="img-fluid" />
+                                                    <h5 style="margin-top: 60px;" class="embed-responsive">@item.TrackName</h5>
+                                                </div>
+                                                <div style="margin: auto;" class="col-lg-6 col-12">
+                                                    <img src="@item.TrackImage" style="display: flex; float: right;" width="400" class="img-fluid" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+</div>

@@ -18,17 +18,40 @@ namespace MotoGP_Web_Site.Database.BusinessLayer.Concrete
 
 		public List<Result> GetAll()
 		{
-			throw new NotImplementedException();
+			return resultDal.GetAll();
 		}
 
 		public Result GetById(int id)
 		{
-			throw new NotImplementedException();
+			return resultDal.getById(id);
 		}
 
 		public List<Result> GetDriversWithEveryProp()
 		{
 			return resultDal.GetDriversWithEveryProp();
+        }
+
+		public List<Result> GetDriversWithEveryPropByTrackAndSession(int trackid, int sessionid)
+		{
+			return resultDal.GetDriversWithEveryPropByTrackAndSessionId(trackid, sessionid);
+		}
+
+		public int GetFinalTrackId()
+        {
+            using (var c = new Context())
+            {
+                var trackId = c.Results.Include(x => x.SessionTrack.Track).OrderBy(x => x.Id).Select(x => x.SessionTrack.Track.TrackId).FirstOrDefault();
+                return (trackId+1);
+            }
+        }
+
+		public int GetSecondManuId()
+        {
+            using (var c = new Context())
+            {
+                var trackId = c.Results.Include(x => x.SessionTrack.Session).OrderBy(x => x.Id).Select(x => x.SessionTrack.Track.TrackId).FirstOrDefault();
+                return (trackId + 1);
+            }
         }
 
 		public List<Session> GetSessions()
@@ -40,11 +63,16 @@ namespace MotoGP_Web_Site.Database.BusinessLayer.Concrete
             }
         }
 
+		public List<Session> GetSessionsByTrackId(int trackid)
+		{
+			return resultDal.GetSessionsByTrackId(trackid);
+		}
+
 		public List<Track> GetTracks()
 		{
 			using(var c = new Context())
 			{
-				var tracks = c.Results.Include(x => x.SessionTrack.Track).Select(x => x.SessionTrack.Track).Distinct().ToList();
+				var tracks = c.Results.Include(x => x.SessionTrack.Track).Include(x => x.SessionTrack.Track.National).Select(x => x.SessionTrack.Track).Distinct().ToList();
 				return tracks;
 			}
 		}
@@ -60,17 +88,17 @@ namespace MotoGP_Web_Site.Database.BusinessLayer.Concrete
 
 		public void TAdd(Result entity)
 		{
-			throw new NotImplementedException();
+			resultDal.Add(entity);
 		}
 
 		public void TRemove(Result entity)
 		{
-			throw new NotImplementedException();
+			resultDal.Delete(entity);
 		}
 
 		public void TUpdate(Result entity)
 		{
-			throw new NotImplementedException();
+			resultDal.Update(entity);
 		}
 	}
 }

@@ -1,0 +1,26 @@
+﻿@model MotoGP_Web_Site.Database.EntityLayer.Concrete.Manufacturer
+
+@{
+    ViewData["Title"] = "Üretici Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+
+                        <label asp-for="ManuName">Üretici</label>
+                        <input type="text" class="form-control" asp-for="ManuName" /><br><br />
+
+                        <button type="submit" class="btn btn-success">Üretici Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

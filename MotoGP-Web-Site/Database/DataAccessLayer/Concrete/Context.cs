@@ -11,8 +11,8 @@ namespace MotoGP_Web_Site.Database.DataAccessLayer.Concrete
         {
             optionsBuilder.UseSqlServer("server=DESKTOP-KB4N4TR;database=CoreMotoDb;integrated security=true;");
             //base.OnConfiguring(optionsBuilder);
-            //server=DESKTOP-KB4N4TR;database=CoreBlogDb;integrated security=true
-            //workstation id=CoreBlogDb.mssql.somee.com;packet size=4096;user id=IcemanStanley_SQLLogin_1;pwd=pnt6gpceyi;data source=CoreBlogDb.mssql.somee.com;persist security info=False;initial catalog=CoreBlogDb;TrustServerCertificate=True;
+            //server=DESKTOP-KB4N4TR;database=CoreMotoDb;integrated security=true
+            //workstation id=CoreMotoDb.mssql.somee.com;packet size=4096;user id=Mete54_SQLLogin_1;pwd=m5g8lglzw9;data source=CoreMotoDb.mssql.somee.com;persist security info=False;initial catalog=CoreMotoDb;TrustServerCertificate=True;
             //server=sql.bsite.net\MSSQL2016;database=meteonder_CoreBlogDb;integrated security=true
         }
 

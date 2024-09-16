@@ -15,12 +15,17 @@ namespace MotoGP_Web_Site.Database.BusinessLayer.Concrete
 
         public List<DriverChampionship> GetAll()
         {
-            throw new NotImplementedException();
+            return driverChampDal.GetAll();
         }
 
         public DriverChampionship GetById(int id)
         {
-            throw new NotImplementedException();
+            return driverChampDal.getById(id);
+        }
+
+        public DriverChampionship GetByIdWithDriver(int id)
+        {
+            return driverChampDal.GetByIdWithDriver(id);
         }
 
         public List<DriverChampionship> GetDriversWithName()

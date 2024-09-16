@@ -1,33 +1,46 @@
 ﻿using MotoGP_Web_Site.Database.BusinessLayer.Abstract;
+using MotoGP_Web_Site.Database.DataAccessLayer.Abstract;
 using MotoGP_Web_Site.Database.EntityLayer.Concrete;
 
 namespace MotoGP_Web_Site.Database.BusinessLayer.Concrete
 {
     public class DriverManager : IDriverService
     {
+        private IDriverDal driverDal;
+
+        public DriverManager(IDriverDal driverDal)
+        {
+            this.driverDal = driverDal;
+        }
+
         public List<Driver> GetAll()
         {
-            throw new NotImplementedException();
+            return driverDal.GetAll();
         }
 
         public Driver GetById(int id)
         {
-            throw new NotImplementedException();
+            return driverDal.getById(id);
+        }
+
+        public List<Driver> GetDriversWithNational()
+        {
+            return driverDal.GetDriversWithNational();
         }
 
         public void TAdd(Driver entity)
         {
-            throw new NotImplementedException();
+            driverDal.Add(entity);
         }
 
         public void TRemove(Driver entity)
         {
-            throw new NotImplementedException();
+            driverDal.Delete(entity);
         }
 
         public void TUpdate(Driver entity)
         {
-            throw new NotImplementedException();
+            driverDal.Update(entity);
         }
     }
 }

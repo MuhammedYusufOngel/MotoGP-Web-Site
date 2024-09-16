@@ -8,5 +8,10 @@ namespace MotoGP_Web_Site.Database.BusinessLayer.Abstract
 		public List<Track> GetTracks();
 		public List<Session> GetSessions();
 		public List<int> GetYears();
-	}
+		public int GetFinalTrackId();
+		public int GetSecondManuId();
+		public List<Session> GetSessionsByTrackId(int trackid);
+		public List<Result> GetDriversWithEveryPropByTrackAndSession(int trackid, int sessionid);
+
+    }
 }

@@ -12,6 +12,6 @@ namespace MotoGP_Web_Site.Database.EntityLayer.Concrete
 		public string Surname { get; set; }
 		public int NationalId { get; set; }
 		public National National { get; set; }
-		public string RiderStory { get; set; }
+		public string? RiderStory { get; set; }
 	}
 }

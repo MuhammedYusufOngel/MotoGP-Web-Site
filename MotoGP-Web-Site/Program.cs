@@ -22,6 +22,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=About}/{action=Index}/{id?}");
+    pattern: "{controller=Driver}/{action=Index}/{id?}");
 
 app.Run();

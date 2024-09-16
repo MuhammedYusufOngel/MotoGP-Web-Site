@@ -10,5 +10,6 @@ namespace MotoGP_Web_Site.Database.EntityLayer.Concrete
 		public Manufacturer Manufacturer { get; set; }
 		public int Points { get; set; }
         public string? Year { get; set; }
-    }
+		public bool? isAdd { get; set; }
+	}
 }

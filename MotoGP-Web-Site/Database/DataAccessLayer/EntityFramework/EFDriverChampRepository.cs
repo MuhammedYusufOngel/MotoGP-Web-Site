@@ -8,6 +8,16 @@ namespace MotoGP_Web_Site.Database.DataAccessLayer.EntityFramework
 {
 	public class EFDriverChampRepository : GenericRepository<DriverChampionship>, IDriverChampDal
 	{
+		public DriverChampionship GetByIdWithDriver(int id)
+        {
+            using (var c = new Context())
+            {
+                var driver = c.DriverChamps
+                    .Where(x => x.DriverChampId == id).FirstOrDefault();
+                return driver;
+            }
+        }
+
 		public List<DriverChampionship> GetDriversWithName()
 		{
 			using(var c = new Context())

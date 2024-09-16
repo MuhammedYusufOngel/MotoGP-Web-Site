@@ -1,0 +1,35 @@
+﻿@model MotoGP_Web_Site.Database.EntityLayer.Concrete.Result
+
+@{
+    ViewData["Title"] = "AddResult";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+					<form method="post">
+                        <label asp-for="SessionTrack.Id">ID 1</label>
+                        <input type="text" class="form-control" asp-for="SessionTrackId" value="@ViewBag.id" readonly><br><br>
+
+                        <label asp-for="DriverChamp">Sürücü</label>
+                        @Html.DropDownListFor(x => x.DriverChampId, (List<SelectListItem>)ViewBag.d, new {@class="form-control"})<br><br>
+
+                        <label asp-for="Time">Lider Zaman</label>
+                        <input type="text" class="form-control" asp-for="Time" value="@ViewBag.time" /><br><br>
+
+                        <label asp-for="Gap">Fark</label>
+                        <input type="text" class="form-control" asp-for="Gap" /><br><br>
+
+                        <label asp-for="Points">Puan</label>
+                        <input type="text" class="form-control" asp-for="Points" /><br><br>
+
+						<button type="submit" class="btn btn-success">Sürücü Ekle</button>
+					</form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
