@@ -26,5 +26,6 @@ namespace MotoGP_Web_Site.Database.DataAccessLayer.Concrete
         public DbSet<News> News { get; set; }
         public DbSet<SessionTrack> SessionTracks { get; set; }
         public DbSet<Result> Results { get; set; }
+        public DbSet<Year> Years { get; set; }
     }
 }

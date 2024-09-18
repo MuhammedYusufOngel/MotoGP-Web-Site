@@ -40,17 +40,17 @@ namespace MotoGP_Web_Site.Database.BusinessLayer.Concrete
 
         public void TAdd(DriverChampionship entity)
         {
-            throw new NotImplementedException();
+            driverChampDal.Add(entity);
         }
 
         public void TRemove(DriverChampionship entity)
         {
-            throw new NotImplementedException();
+            driverChampDal.Delete(entity);
         }
 
         public void TUpdate(DriverChampionship entity)
         {
-            throw new NotImplementedException();
+            driverChampDal.Update(entity);
         }
     }
 }

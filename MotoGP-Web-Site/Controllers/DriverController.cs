@@ -10,7 +10,7 @@ namespace MotoGP_Web_Site.Controllers
     {
         DriverManager dm = new DriverManager(new EFDriverRepository());
         NationalManager nm = new NationalManager(new EFNationalRepository());
-        public IActionResult Index()
+        public IActionResult Drivers()
         {
             var values = dm.GetDriversWithNational();
             return View(values);
@@ -36,14 +36,14 @@ namespace MotoGP_Web_Site.Controllers
         public IActionResult AddDriver(Driver p)
         {
             dm.TAdd(p);
-            return RedirectToAction("Index");
+            return RedirectToAction("Drivers");
         }
 
         public IActionResult DeleteDriver(int id)
         {
             var data = dm.GetById(id);
             dm.TRemove(data);
-            return RedirectToAction("Index");
+            return RedirectToAction("Drivers");
         }
 
         [HttpGet]
@@ -67,7 +67,7 @@ namespace MotoGP_Web_Site.Controllers
         public IActionResult UpdateDriver(Driver p)
         {
             dm.TUpdate(p);
-            return RedirectToAction("Index");
+            return RedirectToAction("Drivers");
         }
     }
 }

@@ -15,13 +15,14 @@ namespace MotoGP_Web_Site.Controllers
 	public class ResultController : Controller
 	{
 		ResultManager rm = new ResultManager(new EFResultRepository());
+        SessionTrackManager stm = new SessionTrackManager(new EFSessionTrackRepository());
         DriverChampManager dcm = new DriverChampManager(new EFDriverChampRepository());
 		public IActionResult Index()
 		{
 			var values = rm.GetDriversWithEveryProp();
             var trackValues = rm.GetTracks();
             var sessionValues = rm.GetSessions();
-            var yearValues = rm.GetYears();
+            var yearValues = stm.GetYears();
 
             List<SelectListItem> tracksValues = (from x in trackValues.ToList()
                                                    select new SelectListItem
@@ -68,14 +69,15 @@ namespace MotoGP_Web_Site.Controllers
             }
 		}
 
-        public IActionResult ShowSessions(int trackid)
+        public IActionResult ShowSessions(int trackid, int yearid)
         {
-            var values = rm.GetSessionsByTrackId(trackid).OrderByDescending(x => x.SessionId).ToList();
+            var values = rm.GetSessionsByTrackId(trackid, yearid).OrderByDescending(x => x.SessionId).ToList();
             ViewBag.trackid = trackid;
+            ViewBag.year = yearid;
             return View(values);
         }
 
-        public IActionResult GoToTrack()
+        public IActionResult GoToTrack(int yearid)
         {
             using (var c = new Context())
             {
@@ -83,27 +85,31 @@ namespace MotoGP_Web_Site.Controllers
                     .Include(x => x.Track)
                     .Include(x => x.Session)
                     .Include(x => x.Track.National)
+                    .Include(x => x.Year)
+                    .Where(x => x.Year.YearId == yearid)
                     .Select(x => x.Track)
                     .Distinct()
                     .OrderByDescending(x => x.TrackId)
                     .ToList();
+                ViewBag.yearid = yearid;
                 return View(values);
             }
         }
 
-        public IActionResult ShowResult(int trackid, int sessionid)
+        public IActionResult ShowResult(int trackid, int sessionid, int yearid)
         {
-            var values = rm.GetDriversWithEveryPropByTrackAndSession(trackid, sessionid);
+            var values = rm.GetDriversWithEveryPropByTrackAndSession(trackid, sessionid, yearid);
             ViewBag.trackid = trackid;
             ViewBag.sessionid = sessionid;
+            ViewBag.year = yearid;
             return View(values);
         }
 
         public IActionResult DeleteResult(int id)
         {
-            var data = rm.GetById(id);
+            var data = rm.GetByIdWithYear(id);
             rm.TRemove(data);
-            return RedirectToAction("GoToTrack");
+            return RedirectToAction("GoToTrack", new { yearid = data.SessionTrack.YearId });
         }
 
         [HttpGet]
@@ -129,20 +135,29 @@ namespace MotoGP_Web_Site.Controllers
         public IActionResult UpdateResult(Result p)
         {
             rm.TUpdate(p);
-            return RedirectToAction("GoToTrack");
+
+            var sessionTrack = stm.GetById(p.SessionTrackId);
+            var year = sessionTrack.YearId;
+
+            return RedirectToAction("GoToTrack", new { yearid = year });
         }
 
         [HttpGet]
-        public IActionResult AddResult(int trackid, int sessionid)
+        public IActionResult AddResult(int trackid, int sessionid, int yearid)
         {
-            var time = rm.GetDriversWithEveryPropByTrackAndSession(trackid, sessionid).Select(x => x.Time).FirstOrDefault();
+            var driversCount = rm.GetDriversWithEveryPropByTrackAndSession(trackid, sessionid, yearid).Select(x => x.Time);
+
+            var position = driversCount.Count();
+
+            var time = driversCount.FirstOrDefault();
 
             ViewBag.time = time;
-
+            ViewBag.position = (position + 1);
             ViewBag.trackid = trackid;
             ViewBag.sessionid = sessionid;
+            ViewBag.year = yearid;
 
-            var drivers = dcm.GetDriversWithName().OrderBy(x => x.Driver.Name);
+            var drivers = dcm.GetDriversWithName().Where(x => x.YearId == yearid).OrderBy(x => x.Driver.Name);
 
             List<SelectListItem> driverValues = (from x in drivers.ToList()
                                                  select new SelectListItem
@@ -152,22 +167,15 @@ namespace MotoGP_Web_Site.Controllers
                                                  }).ToList();
 
             ViewBag.d = driverValues;
-
-            using (var c = new Context())
-            {
-                var sessionTrackId = c.SessionTracks.Where(x => x.Track.TrackId == trackid && x.Session.SessionId == sessionid).Select(x => x.Id).FirstOrDefault();
-
-                ViewBag.id = sessionTrackId;
-            }
-
+            ViewBag.id = stm.GetId(trackid, sessionid, yearid);
 
             return View();
         }
 
         [HttpPost]
         public IActionResult AddResult(Result p)
-        {/*
-            if(p.SessionTrack.Session.SessionId == 8)
+        {
+            if (p.SessionTrack.Session.SessionId == 8)
             {
                 if (p.Points == 1)
                     p.Points = 25;
@@ -202,7 +210,7 @@ namespace MotoGP_Web_Site.Controllers
                 else
                     p.Points = 0;
             }
-            if (p.SessionTrack.Session.SessionId == 6)
+            else if (p.SessionTrack.Session.SessionId == 6)
             {
                 if (p.Points == 1)
                     p.Points = 12;
@@ -225,8 +233,8 @@ namespace MotoGP_Web_Site.Controllers
                 else
                     p.Points = 0;
             }
-            */
-
+            else
+                p.Points = 0;
 
             TimeSpan tm = new TimeSpan();
             TimeSpan leaderTime = p.Time;
@@ -244,7 +252,15 @@ namespace MotoGP_Web_Site.Controllers
 
             TimeSpan driverTime = leaderTime + tm;
 
+            var yearid = p.SessionTrack.YearId;
+
+            p.SessionTrack = null;
             p.Time = driverTime;
+
+            if (p.Gap == "-1")
+            {
+                p.Time = new TimeSpan(0, 0, 0, 0);
+            }
 
             rm.TAdd(p);
             
@@ -255,7 +271,7 @@ namespace MotoGP_Web_Site.Controllers
                     .Include(x => x.Track)
                     .Where(x => x.Id == p.SessionTrackId).FirstOrDefault();
 
-                return RedirectToAction("AddResult", new { sessionid = sessiontrack.Session.SessionId, trackid = sessiontrack.Track.TrackId});
+                return RedirectToAction("AddResult", new { sessionid = sessiontrack.Session.SessionId, trackid = sessiontrack.Track.TrackId, yearid = yearid });
             }
 
         }

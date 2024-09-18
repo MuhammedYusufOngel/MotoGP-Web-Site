@@ -11,6 +11,7 @@ namespace MotoGP_Web_Site.Database.EntityLayer.Concrete
         public int SessionId { get; set; }
         public Session Session { get; set; }
         public DateTime Date { get; set; }
-        public int Year { get; set; }
+        public int? YearId { get; set; }
+        public Year? Year { get; set; }
     }
 }

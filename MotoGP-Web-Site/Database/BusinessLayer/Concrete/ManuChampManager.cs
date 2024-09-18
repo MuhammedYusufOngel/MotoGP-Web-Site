@@ -25,10 +25,24 @@ namespace MotoGP_Web_Site.Database.BusinessLayer.Concrete
             return manuChampDal.getById(id);
         }
 
+        public ManuChampionship GetByIdManufacturerWithName(int id)
+        {
+            return manuChampDal.GetByIdManufacturerWithName(id);
+        }
+
         public List<ManuChampionship> GetManusWithName()
         {
-            using (var c = new Context())
-                return c.ManuChamps.Include(x => x.Manufacturer).OrderByDescending(x => x.Points).ToList();
+            return manuChampDal.GetManusWithName();
+        }
+
+        public ManuChampionship MakeActive(int id)
+        {
+            return manuChampDal.MakeActive(id);
+        }
+
+        public ManuChampionship MakePassive(int id)
+        {
+            return manuChampDal.MakePassive(id);
         }
 
         public void TAdd(ManuChampionship entity)

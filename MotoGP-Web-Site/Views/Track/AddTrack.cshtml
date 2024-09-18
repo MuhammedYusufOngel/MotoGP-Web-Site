@@ -1,0 +1,35 @@
+﻿@model MotoGP_Web_Site.Database.EntityLayer.Concrete.Track
+
+@{
+    ViewData["Title"] = "Pist Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+
+                        <label asp-for="National">Ülke</label>
+                        @Html.DropDownListFor(x => x.NationalId, (List<SelectListItem>)ViewBag.n, new {@class="form-control"})<br><br>
+
+                        <label asp-for="TrackName">Pistin Adı</label>
+                        <input type="text" class="form-control" asp-for="TrackName" /><br><br>
+
+                        <label asp-for="TrackImage">Pistin Resmi</label>
+                        <input type="text" class="form-control" asp-for="TrackImage" /><br><br>
+
+                        <label asp-for="TrackInfo">Pistin Tanıtımı</label>
+                        <textarea type="text" style="height: 300px;" class="form-control" asp-for="TrackInfo"></textarea><br><br>
+
+                        <button type="submit" class="btn btn-success">Pist Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

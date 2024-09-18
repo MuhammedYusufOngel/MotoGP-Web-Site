@@ -1,0 +1,38 @@
+﻿@model MotoGP_Web_Site.Database.EntityLayer.Concrete.News
+
+@{
+    ViewData["Title"] = "Haber Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+
+                        <label asp-for="Title">Başlık</label>
+                        <input type="text" class="form-control" asp-for="Title" /><br><br>
+
+                        <label asp-for="ImageUrl">Resim Url</label>
+                        <input type="text" class="form-control" asp-for="ImageUrl" /><br><br>
+
+                        <label asp-for="Label">Etiketler</label>
+                        <input type="text" class="form-control" asp-for="Label" /><br><br>
+
+                        <label asp-for="Text">Haber</label>
+                        <textarea type="text" style="height: 200px;" class="form-control" asp-for="Text"></textarea><br><br>
+
+                        <label asp-for="Source">Kaynak</label>
+                        <textarea type="text" class="form-control" asp-for="Source"></textarea><br><br>
+
+                        <button type="submit" class="btn btn-success">Haber Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

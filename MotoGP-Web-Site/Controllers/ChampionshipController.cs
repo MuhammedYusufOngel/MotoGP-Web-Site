@@ -29,5 +29,6 @@ namespace MotoGP_Web_Site.Controllers
 			ManuChampManager mcm = new ManuChampManager(new EFManuChampRepository());
 			return View(mcm.GetManusWithName());
 		}
-	}
+
+    }
 }

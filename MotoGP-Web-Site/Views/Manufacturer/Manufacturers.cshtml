@@ -1,0 +1,48 @@
+﻿@using MotoGP_Web_Site.Database.EntityLayer.Concrete
+@model List<Manufacturer>
+
+@{
+    ViewData["Title"] = "Üreticiler";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Üretici</th>
+                                    <th>Sil</th>
+                                    <th>Düzenle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.ManuId</td>
+                                        <td>@item.ManuName </td>
+                                        <td><a href="/Manufacturer/DeleteManufacturer?id=@item.ManuId" class="btn btn-danger">Sil</a></td>
+                                        <td><a href="/Manufacturer/UpdateManufacturer?id=@item.ManuId" class="btn btn-warning">Düzenle</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <br />
+                    <br />
+                    <a href="/Manufacturer/AddManufacturer" class="btn btn-primary">Yeni Üretici Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

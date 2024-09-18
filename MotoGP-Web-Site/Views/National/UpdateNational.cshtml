@@ -1,0 +1,29 @@
+﻿@model MotoGP_Web_Site.Database.EntityLayer.Concrete.National
+
+@{
+    ViewData["Title"] = "Ülke Güncelleme";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+                        <label asp-for="NationalId">ID</label>
+                        <input type="text" class="form-control" asp-for="NationalId" /><br><br>
+
+                        <label asp-for="NationalName">Ülke</label>
+                        <input type="text" class="form-control" asp-for="NationalName" /><br><br>
+
+                        <label asp-for="NationalImage">Resmi</label>
+                        <input type="text" class="form-control" asp-for="NationalImage" /><br><br>
+
+                        <button type="submit" class="btn btn-success">Ülke Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

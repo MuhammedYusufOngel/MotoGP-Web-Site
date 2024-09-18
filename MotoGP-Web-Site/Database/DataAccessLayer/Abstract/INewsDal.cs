@@ -5,5 +5,6 @@ namespace MotoGP_Web_Site.Database.DataAccessLayer.Abstract
     public interface INewsDal:IGenericDal<News>
     {
         List<News> getSixNewsForHome();
+        List<News> GetRelatedNews();
     }
 }

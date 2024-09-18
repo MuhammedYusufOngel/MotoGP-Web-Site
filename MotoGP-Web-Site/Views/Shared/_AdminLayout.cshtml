@@ -84,7 +84,7 @@
                     </div>
                 </li>
                 <li class="nav-item menu-items">
-                    <a class="nav-link" href="/Admin/Index">
+                    <a class="nav-link" href="/Admin/Dashboard">
                         <span class="menu-icon">
                             <i class="mdi mdi-speedometer"></i>
                         </span>
@@ -92,7 +92,7 @@
                     </a>
                 </li>
                 <li class="nav-item menu-items">
-                    <a class="nav-link" href="/Admin/Index">
+                    <a class="nav-link" href="/News/NewsAdmin">
                         <span class="menu-icon">
                             <i class="mdi mdi-speedometer"></i>
                         </span>
@@ -100,17 +100,38 @@
                     </a>
                 </li>
                 <li class="nav-item menu-items">
-                    
-                    <a class="nav-link" href="/Result/GoToTrack">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#result" aria-expanded="false" aria-controls="auth">
                         <span class="menu-icon">
                             <i class="mdi mdi-car"></i>
                         </span>
                         <span class="menu-title">Yarışlar</span>
+                        <i class="menu-arrow"></i>
                     </a>
+                    <div class="collapse" id="result">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="/Result/GoToTrack?yearid=1"> 2024 </a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/Result/GoToTrack?yearid=6"> 2019 </a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#sessionTrack" aria-expanded="false" aria-controls="auth">
+                        <span class="menu-icon">
+                            <i class="fa fa-clock-o"></i>
+                        </span>
+                        <span class="menu-title">Seanslar</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="sessionTrack">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="/SessionTrack/SessionTracks?yearid=1"> 2024 </a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/SessionTrack/SessionTracks?yearid=6"> 2019 </a></li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item menu-items">
 
-                    <a class="nav-link" href="/Team/Index">
+                    <a class="nav-link" href="/Team/Teams">
                         <span class="menu-icon">
                             <i class="mdi mdi-car-3-plus"></i>
                         </span>
@@ -119,7 +140,7 @@
                 </li>
                 <li class="nav-item menu-items">
 
-                    <a class="nav-link" href="/Manufacturer/Index">
+                    <a class="nav-link" href="/Manufacturer/Manufacturers">
                         <span class="menu-icon">
                             <i class="mdi mdi-wrench"></i>
                         </span>
@@ -128,7 +149,7 @@
                 </li>
                 <li class="nav-item menu-items">
 
-                    <a class="nav-link" href="/Driver/Index">
+                    <a class="nav-link" href="/Driver/Drivers">
                         <span class="menu-icon">
                             <i class="fa fa-users"></i>
                         </span>
@@ -136,23 +157,70 @@
                     </a>
                 </li>
                 <li class="nav-item menu-items">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+
+                    <a class="nav-link" href="/National/Nationals">
+                        <span class="menu-icon">
+                            <i class="fa fa-home"></i>
+                        </span>
+                        <span class="menu-title">Ülkeler</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+
+                    <a class="nav-link" href="/Track/Tracks">
+                        <span class="menu-icon">
+                            <i class="fa fa-road"></i>
+                        </span>
+                        <span class="menu-title">Pistler</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#driver" aria-expanded="false" aria-controls="auth">
                         <span class="menu-icon">
                             <i class="mdi mdi-trophy"></i>
                         </span>
-                        <span class="menu-title">Şampiyonluklar</span>
+                        <span class="menu-title">Sürücüler Şamp.</span>
                         <i class="menu-arrow"></i>
                     </a>
-                    <div class="collapse" id="auth">
+                    <div class="collapse" id="driver">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="../../pages/samples/login.html"> Sürücüler Şampiyonluğu </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../../pages/samples/register.html"> Takımlar Şampiyonluğu </a></li>
-                            <li class="nav-item"> <a class="nav-link" href="../../pages/samples/error-404.html"> Markalar Şampiyonluğu </a></li>
+                            <li class="nav-item"><a class="nav-link" href="/DriverChamp/Driver?yearid=1">2024</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/DriverChamp/Driver?yearid=6">2019</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item menu-items">
-                    <a class="nav-link" href="/Admin/Index">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#team" aria-expanded="false" aria-controls="auth">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-trophy"></i>
+                        </span>
+                        <span class="menu-title">Takımlar Şamp.</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="team">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="/TeamChamp/Team?yearid=1">2024</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/TeamChamp/Team?yearid=6">2019</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#manu" aria-expanded="false" aria-controls="auth">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-trophy"></i>
+                        </span>
+                        <span class="menu-title">Markalar Şamp.</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="manu">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"><a class="nav-link" href="/ManuChamp/Manufacturer?yearid=1">2024</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="/ManuChamp/Manufacturer?yearid=6">2019</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="/Settings/Setting">
                         <span class="menu-icon">
                             <i class="mdi mdi-cog"></i>
                         </span>
@@ -160,7 +228,7 @@
                     </a>
                 </li>
                 <li class="nav-item menu-items">
-                    <a class="nav-link" href="/Admin/Index">
+                    <a class="nav-link" href="/Default/Index">
                         <span class="menu-icon">
                             <i class="fa fa-exchange"></i>
                         </span>
@@ -168,7 +236,7 @@
                     </a>
                 </li>
                 <li class="nav-item menu-items">
-                    <a class="nav-link" href="/Admin/Index">
+                    <a class="nav-link" href="/Login/LogOut">
                         <span class="menu-icon">
                             <i class="mdi mdi-logout"></i>
                         </span>

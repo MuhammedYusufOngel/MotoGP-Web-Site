@@ -4,6 +4,7 @@ using MotoGP_Web_Site.Database.BusinessLayer.Abstract;
 using MotoGP_Web_Site.Database.DataAccessLayer.Abstract;
 using MotoGP_Web_Site.Database.DataAccessLayer.Concrete;
 using MotoGP_Web_Site.Database.EntityLayer.Concrete;
+using NuGet.Common;
 
 namespace MotoGP_Web_Site.Database.BusinessLayer.Concrete
 {
@@ -26,14 +27,19 @@ namespace MotoGP_Web_Site.Database.BusinessLayer.Concrete
 			return resultDal.getById(id);
 		}
 
+		public Result GetByIdWithYear(int id)
+		{
+			return resultDal.GetByIdWithYear(id);
+		}
+
 		public List<Result> GetDriversWithEveryProp()
 		{
 			return resultDal.GetDriversWithEveryProp();
         }
 
-		public List<Result> GetDriversWithEveryPropByTrackAndSession(int trackid, int sessionid)
+		public List<Result> GetDriversWithEveryPropByTrackAndSession(int trackid, int sessionid, int yearid)
 		{
-			return resultDal.GetDriversWithEveryPropByTrackAndSessionId(trackid, sessionid);
+			return resultDal.GetDriversWithEveryPropByTrackAndSessionId(trackid, sessionid, yearid);
 		}
 
 		public int GetFinalTrackId()
@@ -63,9 +69,9 @@ namespace MotoGP_Web_Site.Database.BusinessLayer.Concrete
             }
         }
 
-		public List<Session> GetSessionsByTrackId(int trackid)
+		public List<Session> GetSessionsByTrackId(int trackid, int yearid)
 		{
-			return resultDal.GetSessionsByTrackId(trackid);
+			return resultDal.GetSessionsByTrackId(trackid, yearid);
 		}
 
 		public List<Track> GetTracks()
@@ -76,15 +82,6 @@ namespace MotoGP_Web_Site.Database.BusinessLayer.Concrete
 				return tracks;
 			}
 		}
-
-		public List<int> GetYears()
-        {
-            using (var c = new Context())
-            {
-                var tracks = c.Results.Include(x => x.SessionTrack.Track).Select(x => x.SessionTrack.Year).Distinct().ToList();
-                return tracks;
-            }
-        }
 
 		public void TAdd(Result entity)
 		{

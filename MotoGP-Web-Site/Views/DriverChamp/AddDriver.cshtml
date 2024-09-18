@@ -1,0 +1,36 @@
+﻿@model MotoGP_Web_Site.Database.EntityLayer.Concrete.DriverChampionship
+
+@{
+    ViewData["Title"] = "Klasmana Sürücü Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+
+                        <label asp-for="Driver">Sürücü</label>
+                        @Html.DropDownListFor(x => x.DriverId, (List<SelectListItem>)ViewBag.d, new {@class="form-control"})<br><br>
+
+                        <label asp-for="Team">Takımı</label>
+                        @Html.DropDownListFor(x => x.TeamId, (List<SelectListItem>)ViewBag.t, new {@class="form-control"})<br><br>
+
+                        <label asp-for="Points">Puanı</label>
+                        <input type="number" class="form-control" asp-for="Points" /><br><br>
+
+                        <label asp-for="Year">Yıl</label>
+                        <input type="number" class="form-control" asp-for="YearId" value="@ViewBag.year" readonly /><br><br>
+
+                        <button type="submit" class="btn btn-success">Sürücü Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

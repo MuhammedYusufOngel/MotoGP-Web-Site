@@ -1,0 +1,57 @@
+﻿@using MotoGP_Web_Site.Database.EntityLayer.Concrete
+@model List<ManuChampionship>
+
+@{
+    ViewData["Title"] = "Üreticiler Klasmanı";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Yıl</th>
+                                    <th>Üretici</th>
+                                    <th>Puan</th>
+                                    <th>Sil</th>
+                                    <th>Düzenle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Year.SeasonYear</td>
+                                        <td>@item.Manufacturer.ManuName </td>
+                                        <td>@item.Points </td>
+                                        <td><a href="/ManuChamp/DeleteManufacturer?id=@item.ManuChampId" class="btn btn-danger">Sil</a></td>
+                                        <td><a href="/ManuChamp/UpdateManufacturer?id=@item.ManuChampId" class="btn btn-warning">Düzenle</a></td>
+                                        @if(item.isAdd == true)
+                                        {
+                                            <td><a href="/ManuChamp/MakePassive?id=@item.ManuChampId" class="btn btn-outline-warning">Eklendi - Puan Ekleme Devre Dışı</a></td>
+                                        }
+                                        else
+                                        {
+                                            <td><a href="/ManuChamp/MakeActive?id=@item.ManuChampId" class="btn btn-outline-success">Eklenmedi - Puan Ekleme Devrede</a></td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <br />
+                    <br />
+                    <a href="/ManuChamp/AddManufacturer?yearid=@ViewBag.year" class="btn btn-primary">Klasmana Üretici Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

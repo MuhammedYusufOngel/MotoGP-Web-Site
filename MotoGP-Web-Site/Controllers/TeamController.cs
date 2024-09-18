@@ -10,7 +10,7 @@ namespace MotoGP_Web_Site.Controllers
     {
         TeamManager tm = new TeamManager(new EFTeamRepository());
         ManuManager mm = new ManuManager(new EFManuRepository());
-        public IActionResult Index()
+        public IActionResult Teams()
         {
             var values = tm.GetTeamsWithManufacturer();
             return View(values);
@@ -36,14 +36,14 @@ namespace MotoGP_Web_Site.Controllers
         public IActionResult AddTeam(Team p)
         {
             tm.TAdd(p);
-            return RedirectToAction("Index");
+            return RedirectToAction("Teams");
         }
 
         public IActionResult DeleteTeam(int id)
         {
             var data = tm.GetById(id);
             tm.TRemove(data);
-            return RedirectToAction("Index");
+            return RedirectToAction("Teams");
         }
 
         [HttpGet]
@@ -68,7 +68,7 @@ namespace MotoGP_Web_Site.Controllers
         public IActionResult UpdateTeam(Team p)
         {
             tm.TUpdate(p);
-            return RedirectToAction("Index");
+            return RedirectToAction("Teams");
         }
     }
 }

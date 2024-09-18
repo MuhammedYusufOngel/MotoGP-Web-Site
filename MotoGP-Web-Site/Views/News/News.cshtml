@@ -1,0 +1,61 @@
+﻿@using System.Globalization
+@using X.PagedList
+@using X.Web.PagedList
+@using MotoGP_Web_Site.Database.EntityLayer.Concrete
+@model IPagedList<News>
+
+@{
+    ViewData["Title"] = "Haberler";
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+
+<section class="inner-w3ls">
+    <div class="container">
+        <h3 class="text-center" data-aos="zoom-in" style="color: black;">Haberler</h3>
+    </div>
+</section>
+<!-- header section -->
+<section class="news-w3layouts">
+    <div class="container">
+        <!-- Blog Post Row -->
+
+        @foreach(var item in Model)
+        {
+            <div class="news-w3ls">
+                <div class="col-md-1 text-center" data-aos="zoom-in">
+                    <p class="news-agileits1"><i class="fa fa-motorcycle" style="color: black;"></i></p>
+                    <p class="news-agileits2" style="color: black;">@DateTime.Parse(item.CreateDate.ToString(), CultureInfo.InvariantCulture).ToString("d MMMM yyyy", new CultureInfo("tr-TR"))</p>
+                </div>
+                <div class="col-md-5" data-aos="flip-left">
+                    <a href="/News/NewsDetail?id=@item.Id" style="color: black;">
+                        <div class="hover01 column">
+                            <div>
+                                <figure><img class="img-responsive img-hover" src="@item.ImageUrl" alt="w3layouts"></figure>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6" data-aos="flip-right">
+                    <h3 style="color: black;">
+                        <a href="/News/NewsDetail?id=@item.Id" style="color: black;">@item.Title</a>
+                    </h3>
+                    <p class="news-agileits3" style="color: black;">@Html.Raw(item.Text.Substring(0, item.Text.Substring(0, 300).LastIndexOf(" "))) ... </p>
+                    <a class="btn btn-outline-primary" href="/News/NewsDetail?id=@item.Id" style="color: black;">Daha Fazlası İçin <i class="fa fa-angle-right"></i></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <!-- /.row -->
+            <hr>
+        }
+        <!-- Pager -->
+        @Html.PagedListPager((IPagedList)Model,page=>Url.Action("News", new {page}),
+            new PagedListRenderOptions {
+            LiElementClasses = new string[] { "page-item" },
+            PageClasses = new string[] { "page-link" }
+        })
+        <!-- /.row -->
+
+        <hr>
+    </div>
+</section>

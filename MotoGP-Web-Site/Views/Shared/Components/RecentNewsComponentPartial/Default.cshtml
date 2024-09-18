@@ -1,0 +1,28 @@
+﻿@using MotoGP_Web_Site.Database.EntityLayer.Concrete
+@using System.Globalization
+@model List<News>
+
+<h4 style="color: black;" class="post-w3ls">İlgili Haberler</h4>
+<div class="hline"></div>
+@foreach(var item in Model)
+{
+	<ul class="popular-posts">
+		<li data-aos="flip-up">
+			<div class="postimg-agile">
+				<a href="#">
+					<div class="hover15 column">
+						<div>
+							<figure><img src="@item.ImageUrl" alt="Recent Post"></figure>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="postinfo-agile">
+				<p><a href="#">@item.Title</a></p>
+				<em>@DateTime.Parse(item.CreateDate.ToString(), CultureInfo.InvariantCulture).ToString("d MMMM yyyy", new CultureInfo("tr-TR"))</em>
+			</div>
+			<div class="clearfix"></div>
+		</li>
+	</ul>
+	<div class="hline"></div>
+}

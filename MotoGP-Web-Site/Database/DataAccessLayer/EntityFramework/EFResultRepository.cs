@@ -8,6 +8,19 @@ namespace MotoGP_Web_Site.Database.DataAccessLayer.EntityFramework
 {
 	public class EFResultRepository : GenericRepository<Result>, IResultDal
 	{
+		public Result GetByIdWithYear(int id)
+		{
+            using (var c = new Context())
+            {
+                var value = c.Results
+                    .Include(x => x.SessionTrack)
+                    .Include(x => x.SessionTrack.Year)
+                    .Where(x => x.Id == id)
+                    .FirstOrDefault();
+                return value;
+            }
+        }
+
 		public List<Result> GetDriversWithEveryProp()
 		{
 			using(var c = new Context())
@@ -25,7 +38,7 @@ namespace MotoGP_Web_Site.Database.DataAccessLayer.EntityFramework
 			}
 		}
 
-		public List<Result> GetDriversWithEveryPropByTrackAndSessionId(int trackid, int sessionid)
+		public List<Result> GetDriversWithEveryPropByTrackAndSessionId(int trackid, int sessionid, int yearid)
 		{
             using (var c = new Context())
             {
@@ -37,16 +50,16 @@ namespace MotoGP_Web_Site.Database.DataAccessLayer.EntityFramework
                     .Include(x => x.SessionTrack)
                     .Include(x => x.SessionTrack.Track)
                     .Include(x => x.SessionTrack.Session)
-                    .Where(x => x.SessionTrack.Session.SessionId == sessionid && x.SessionTrack.Track.TrackId == trackid).OrderBy(x => x.Time).ToList();
+                    .Where(x => x.SessionTrack.Session.SessionId == sessionid && x.SessionTrack.Track.TrackId == trackid && x.SessionTrack.YearId == yearid).OrderBy(x => x.Time).ToList();
                 return values;
             }
         }
 
-		public List<Session> GetSessionsByTrackId(int trackid)
+		public List<Session> GetSessionsByTrackId(int trackid, int yearid)
         {
             using (var c = new Context())
             {
-                var values = c.SessionTracks.Include(x => x.Track).Include(x => x.Session).Where(x => x.Track.TrackId == trackid).Select(x => x.Session).ToList();
+                var values = c.SessionTracks.Include(x => x.Track).Include(x => x.Session).Where(x => x.Track.TrackId == trackid && x.YearId == yearid).Select(x => x.Session).ToList();
                 return values;
             }
         }

@@ -23,6 +23,11 @@ namespace MotoGP_Web_Site.Database.BusinessLayer.Concrete
             return trackDal.getById(id);
         }
 
+        public Track GetByIdWithNation(int id)
+        {
+            return trackDal.GetByIdWithNation(id);
+        }
+
         public List<Track> GetTracksWithNation()
         {
             return trackDal.GetTracksWithNation();

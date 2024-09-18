@@ -1,0 +1,54 @@
+﻿@using MotoGP_Web_Site.Database.EntityLayer.Concrete
+@model List<TeamChampionship>
+
+@{
+    ViewData["Title"] = "Takımlar Klasmanı";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Resim</th>
+                                    <th>Takım</th>
+                                    <th>Üretici</th>
+                                    <th>Puan</th>
+                                    <th>Sil</th>
+                                    <th>Düzenle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Year.YearId</td>
+                                        <td><img src="@item.Team.TeamImage" width="60" class="img-responsive" /></td>
+                                        <td>@item.Team.TeamName </td>
+                                        <td>@item.Team.Manufacturer.ManuName </td>
+                                        <td>@item.Points </td>
+                                        <td><a href="/TeamChamp/DeleteTeam?id=@item.TeamChampId" class="btn btn-danger">Sil</a></td>
+                                        <td><a href="/TeamChamp/UpdateTeam?id=@item.TeamChampId" class="btn btn-warning">Düzenle</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <br />
+                    <br />
+                    <a href="/TeamChamp/AddTeam?yearid=@ViewBag.year" class="btn btn-primary">Klasmana Takım Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

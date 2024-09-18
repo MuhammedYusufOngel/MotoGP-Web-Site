@@ -278,14 +278,16 @@ namespace MotoGP_Web_Site.Migrations
                     b.Property<int?>("TeamId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Year")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("YearId")
+                        .HasColumnType("int");
 
                     b.HasKey("DriverChampId");
 
                     b.HasIndex("DriverId");
 
                     b.HasIndex("TeamId");
+
+                    b.HasIndex("YearId");
 
                     b.ToTable("DriverChamps");
                 });
@@ -307,8 +309,8 @@ namespace MotoGP_Web_Site.Migrations
                     b.Property<int>("Points")
                         .HasColumnType("int");
 
-                    b.Property<string>("Year")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("YearId")
+                        .HasColumnType("int");
 
                     b.Property<bool?>("isAdd")
                         .HasColumnType("bit");
@@ -316,6 +318,8 @@ namespace MotoGP_Web_Site.Migrations
                     b.HasKey("ManuChampId");
 
                     b.HasIndex("ManufacturerManuId");
+
+                    b.HasIndex("YearId");
 
                     b.ToTable("ManuChamps");
                 });
@@ -366,8 +370,8 @@ namespace MotoGP_Web_Site.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("CreateDate")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -464,7 +468,7 @@ namespace MotoGP_Web_Site.Migrations
                     b.Property<int>("TrackId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Year")
+                    b.Property<int?>("YearId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -472,6 +476,8 @@ namespace MotoGP_Web_Site.Migrations
                     b.HasIndex("SessionId");
 
                     b.HasIndex("TrackId");
+
+                    b.HasIndex("YearId");
 
                     b.ToTable("SessionTracks");
                 });
@@ -520,12 +526,14 @@ namespace MotoGP_Web_Site.Migrations
                     b.Property<int>("TeamId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Year")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("YearId")
+                        .HasColumnType("int");
 
                     b.HasKey("TeamChampId");
 
                     b.HasIndex("TeamId");
+
+                    b.HasIndex("YearId");
 
                     b.ToTable("TeamChamps");
                 });
@@ -558,6 +566,22 @@ namespace MotoGP_Web_Site.Migrations
                     b.HasIndex("NationalId");
 
                     b.ToTable("Tracks");
+                });
+
+            modelBuilder.Entity("MotoGP_Web_Site.Database.EntityLayer.Concrete.Year", b =>
+                {
+                    b.Property<int>("YearId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("YearId"), 1L, 1);
+
+                    b.Property<int>("SeasonYear")
+                        .HasColumnType("int");
+
+                    b.HasKey("YearId");
+
+                    b.ToTable("Years");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -632,9 +656,15 @@ namespace MotoGP_Web_Site.Migrations
                         .WithMany()
                         .HasForeignKey("TeamId");
 
+                    b.HasOne("MotoGP_Web_Site.Database.EntityLayer.Concrete.Year", "Year")
+                        .WithMany()
+                        .HasForeignKey("YearId");
+
                     b.Navigation("Driver");
 
                     b.Navigation("Team");
+
+                    b.Navigation("Year");
                 });
 
             modelBuilder.Entity("MotoGP_Web_Site.Database.EntityLayer.Concrete.ManuChampionship", b =>
@@ -645,7 +675,13 @@ namespace MotoGP_Web_Site.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("MotoGP_Web_Site.Database.EntityLayer.Concrete.Year", "Year")
+                        .WithMany()
+                        .HasForeignKey("YearId");
+
                     b.Navigation("Manufacturer");
+
+                    b.Navigation("Year");
                 });
 
             modelBuilder.Entity("MotoGP_Web_Site.Database.EntityLayer.Concrete.Result", b =>
@@ -681,9 +717,15 @@ namespace MotoGP_Web_Site.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("MotoGP_Web_Site.Database.EntityLayer.Concrete.Year", "Year")
+                        .WithMany()
+                        .HasForeignKey("YearId");
+
                     b.Navigation("Session");
 
                     b.Navigation("Track");
+
+                    b.Navigation("Year");
                 });
 
             modelBuilder.Entity("MotoGP_Web_Site.Database.EntityLayer.Concrete.Team", b =>
@@ -705,7 +747,13 @@ namespace MotoGP_Web_Site.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("MotoGP_Web_Site.Database.EntityLayer.Concrete.Year", "Year")
+                        .WithMany()
+                        .HasForeignKey("YearId");
+
                     b.Navigation("Team");
+
+                    b.Navigation("Year");
                 });
 
             modelBuilder.Entity("MotoGP_Web_Site.Database.EntityLayer.Concrete.Track", b =>

@@ -1,0 +1,66 @@
+﻿@using System.Globalization
+
+@{
+    ViewData["Title"] = ViewBag.title1;
+    Layout = "~/Views/Shared/_SiteLayout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<section class="blogpost-w3layouts">
+	<div class="container">
+		<div class="col-lg-8" data-aos="flip-left">
+			<p class="blogpost-p1">
+				<div class="hover01 column">
+					<div>
+						<figure><img class="img-responsive" src="@ViewBag.image" data-aos="zoom-in"></figure>
+					</div>
+				</div>	
+			</p>
+			<br />
+			<br />
+			<h1 style="font-size: 30px;">@ViewBag.title1</h1>
+			<br />
+			<br />
+			<p class="blogpost-p2" data-aos="flip-up"> @DateTime.Parse(ViewBag.date.ToString(), CultureInfo.InvariantCulture).ToString("d MMMM yyyy hh:mm", new CultureInfo("tr-TR")) </p>
+			<p class="blogpost-p3" data-aos="flip-up"> @Html.Raw(ViewBag.text) </p>
+			<p class="blogpost-p3"> Kaynak: @ViewBag.source </p>
+			<div class="hline"></div>
+
+		</div>
+
+
+		<div class="col-lg-4" data-aos="flip-right">
+			
+			@await Component.InvokeAsync("RecentNewsComponentPartial")
+
+			<br />
+			<h4 style="color: black;" class="post-w3ls">Son Haberler</h4>
+			<div class="hline"></div>
+			<ul class="popular-posts">
+				<li data-aos="flip-up">
+					<div class="postimg-agile">
+						<a href="#">
+							<div class="hover15 column">
+								<div>
+									<figure><img src="~/web/images/post1.jpg" alt="Popular Post"></figure>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="postinfo-agile">
+						<p><a href="#">Lorem ipsum dolor sit amet consectetur adipiscing elit</a></p>
+						<em>Posted on 02/21/17</em>
+					</div>
+					<div class="clearfix"></div>
+				</li>
+			</ul>
+			<div class="hline"></div>
+		</div>
+	</div>
+</section>

@@ -7,6 +7,10 @@ namespace MotoGP_Web_Site.Controllers
 		public IActionResult Index()
 		{
 			return View();
-		}
-	}
+        }
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+    }
 }

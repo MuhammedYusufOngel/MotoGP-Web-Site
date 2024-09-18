@@ -10,7 +10,7 @@
     <div class="row">
         @foreach(var item in Model)
         {
-        <a href="/Result/ShowResult?trackid=@ViewBag.trackid&sessionid=@item.SessionId" class="btn btn-dark">
+        <a href="/Result/ShowResult?trackid=@ViewBag.trackid&sessionid=@item.SessionId&yearid=@ViewBag.year" class="btn btn-dark">
             <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">

@@ -9,7 +9,7 @@ namespace MotoGP_Web_Site.Controllers
     public class ManufacturerController : Controller
     {
         ManuManager mm = new ManuManager(new EFManuRepository());
-        public IActionResult Index()
+        public IActionResult Manufacturers()
         {
             var values = mm.GetAll();
             return View(values);
@@ -25,14 +25,14 @@ namespace MotoGP_Web_Site.Controllers
         public IActionResult AddManufacturer(Manufacturer p)
         {
             mm.TAdd(p);
-            return RedirectToAction("Index");
+            return RedirectToAction("Manufacturers");
         }
 
         public IActionResult DeleteManufacturer(int id)
         {
             var data = mm.GetById(id);
             mm.TRemove(data);
-            return RedirectToAction("Index");
+            return RedirectToAction("Manufacturers");
         }
 
         [HttpGet]
@@ -46,7 +46,7 @@ namespace MotoGP_Web_Site.Controllers
         public IActionResult UpdateManufacturer(Manufacturer p)
         {
             mm.TUpdate(p);
-            return RedirectToAction("Index");
+            return RedirectToAction("Manufacturers");
         }
     }
 }

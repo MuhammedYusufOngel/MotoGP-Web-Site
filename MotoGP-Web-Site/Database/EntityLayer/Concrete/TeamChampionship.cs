@@ -9,6 +9,7 @@ namespace MotoGP_Web_Site.Database.EntityLayer.Concrete
 		public int TeamId { get; set; }
 		public Team Team { get; set; }
 		public int Points { get; set; }
-		public string? Year { get; set; }
-	}
+        public int? YearId { get; set; }
+        public Year? Year { get; set; }
+    }
 }

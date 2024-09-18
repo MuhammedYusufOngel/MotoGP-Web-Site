@@ -1,0 +1,51 @@
+﻿@using MotoGP_Web_Site.Database.EntityLayer.Concrete
+@using System.Globalization
+@model List<SessionTrack>
+
+@{
+    ViewData["Title"] = "Seanslar";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Pist</th>
+                                    <th>Seans</th>
+                                    <th>Tarih</th>
+                                    <th>Sil</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.Track.TrackName</td>
+                                        <td>@item.Session.SessionName </td>
+                                        <td>@DateTime.Parse(item.Date.ToString(), CultureInfo.InvariantCulture).ToString("d MMMM yyyy", new CultureInfo("tr-TR")) </td>
+                                        <td><a href="/SessionTrack/DeleteSessionTrack?id=@item.Id" class="btn btn-danger">Sil</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <br />
+                    <br />
+                    <a href="/SessionTrack/AddSessionTrack" class="btn btn-primary">Yeni Seans Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

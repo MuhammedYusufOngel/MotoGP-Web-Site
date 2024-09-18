@@ -12,6 +12,6 @@ namespace MotoGP_Web_Site.Database.EntityLayer.Concrete
         public SessionTrack SessionTrack { get; set; }
 		public TimeSpan Time { get; set; }
 		public string Gap { get; set; }
-		public int? Points { get; set; }
-	}
+        public int? Points { get; set; }
+    }
 }

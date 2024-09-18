@@ -25,12 +25,14 @@ namespace MotoGP_Web_Site.Database.BusinessLayer.Concrete
             return teamChampDal.getById(id);
         }
 
+        public TeamChampionship GetByIdWithTeams(int id)
+        {
+            return teamChampDal.GetByIdWithTeams(id);
+        }
+
         public List<TeamChampionship> GetTeamsWithName()
         {
-            using(var c = new Context())
-            {
-                return c.TeamChamps.Include(x => x.Team).Include(x => x.Team.Manufacturer).OrderByDescending(x => x.Points).ToList();
-            }
+            return teamChampDal.GetTeamsWithName();
         }
 
         public void TAdd(TeamChampionship entity)

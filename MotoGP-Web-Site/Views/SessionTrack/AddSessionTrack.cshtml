@@ -1,0 +1,35 @@
+﻿@model MotoGP_Web_Site.Database.EntityLayer.Concrete.SessionTrack
+
+@{
+    ViewData["Title"] = "Seans Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post">
+
+                        <label asp-for="Track">Pist</label>
+                        @Html.DropDownListFor(x => x.TrackId, (List<SelectListItem>)ViewBag.t, new {@class="form-control"})<br><br>
+
+                        <label asp-for="Session">Seans</label>
+                        @Html.DropDownListFor(x => x.SessionId, (List<SelectListItem>)ViewBag.s, new {@class="form-control"})<br><br>
+
+                        <label asp-for="Date">Tarih</label>
+                        <input type="date" class="form-control" asp-for="Date" /><br><br>
+
+                        <label asp-for="Year">Yıl</label>
+                        @Html.DropDownListFor(x => x.YearId, (List<SelectListItem>)ViewBag.y, new {@class="form-control"})<br><br>
+
+                        <button type="submit" class="btn btn-success">Seans Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
